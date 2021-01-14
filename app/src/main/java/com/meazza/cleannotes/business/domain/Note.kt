@@ -6,6 +6,6 @@ data class Note(
     val date: Long,
     val owners: List<String>,
     val color: String,
-    val isSynced: Boolean,
+    var isSynced: Boolean,
     val id: String
 )

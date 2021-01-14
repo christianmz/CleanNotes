@@ -24,4 +24,8 @@ object DatabaseModule {
     @ActivityRetainedScoped
     @Provides
     fun provideNoteDao(db: NotesDb) = db.noteDao()
+
+    @ActivityRetainedScoped
+    @Provides
+    fun provideDeletedNoteIdDao(db: NotesDb) = db.deletedNoteIdDao()
 }
