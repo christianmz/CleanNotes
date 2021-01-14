@@ -1,7 +1,8 @@
-package com.meazza.cleannotes
+package com.meazza.cleannotes.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.meazza.cleannotes.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
