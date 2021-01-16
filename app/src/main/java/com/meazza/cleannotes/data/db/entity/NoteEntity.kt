@@ -11,7 +11,6 @@ data class NoteEntity(
     val title: String,
     val content: String,
     val date: Long,
-    val owners: List<String>,
     val color: String,
     var isSynced: Boolean = false,
     @PrimaryKey(autoGenerate = false)
@@ -23,7 +22,6 @@ data class NoteEntity(
                 note.title,
                 note.content,
                 note.date,
-                note.owners,
                 note.color,
                 note.isSynced,
                 note.id
@@ -31,5 +29,5 @@ data class NoteEntity(
         }
     }
 
-    fun toNote() = Note(title, content, date, owners, color, isSynced, id)
+    fun toNote() = Note(title, content, date, color, isSynced, id)
 }

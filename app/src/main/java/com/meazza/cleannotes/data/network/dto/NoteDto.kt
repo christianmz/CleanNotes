@@ -7,7 +7,6 @@ data class NoteDto(
     val title: String,
     val content: String,
     val date: Long,
-    val owners: List<String>,
     val color: String,
     @Expose(deserialize = false, serialize = false)
     val isSynced: Boolean = false,
@@ -20,7 +19,6 @@ data class NoteDto(
                 note.title,
                 note.content,
                 note.date,
-                note.owners,
                 note.color,
                 note.isSynced,
                 note.id
@@ -29,6 +27,6 @@ data class NoteDto(
     }
 
     fun toNote(): Note {
-        return Note(title, content, date, owners, color, isSynced, id)
+        return Note(title, content, date, color, isSynced, id)
     }
 }
