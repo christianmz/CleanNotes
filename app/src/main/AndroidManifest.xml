@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CleanNotes"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

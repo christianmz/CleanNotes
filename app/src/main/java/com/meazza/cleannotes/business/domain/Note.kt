@@ -4,7 +4,7 @@ data class Note(
     val title: String,
     val content: String,
     val date: Long,
-    val color: String,
+    val owners: List<String>,
     var isSynced: Boolean,
     val id: String
 )

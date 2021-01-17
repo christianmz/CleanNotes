@@ -92,7 +92,6 @@ dependencies {
     implementation("io.noties.markwon:core:4.6.1")
     implementation("com.jakewharton.timber:timber:4.7.1")
     implementation("jp.wasabeef:recyclerview-animators:3.0.0")
-    implementation("com.github.skydoves:colorpickerview:2.1.7")
 
     testImplementation("junit:junit:4.13.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")

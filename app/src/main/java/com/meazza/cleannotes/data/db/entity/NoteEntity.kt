@@ -11,7 +11,7 @@ data class NoteEntity(
     val title: String,
     val content: String,
     val date: Long,
-    val color: String,
+    val owners: List<String>,
     var isSynced: Boolean = false,
     @PrimaryKey(autoGenerate = false)
     val id: String = UUID.randomUUID().toString()
@@ -22,12 +22,12 @@ data class NoteEntity(
                 note.title,
                 note.content,
                 note.date,
-                note.color,
+                note.owners,
                 note.isSynced,
                 note.id
             )
         }
     }
 
-    fun toNote() = Note(title, content, date, color, isSynced, id)
+    fun toNote() = Note(title, content, date, owners, isSynced, id)
 }
