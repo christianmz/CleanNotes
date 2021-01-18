@@ -1,95 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.auth.AuthFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_auth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/et_email"
-        app:layout_constraintEnd_toStartOf="@+id/tv_sign_up"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_sign_in"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+    <data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_sign_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/sign_in"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_auth"
-        app:layout_constraintEnd_toStartOf="@+id/switch_auth"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/switch_auth" />
+        <variable
+            name="viewModel"
+            type="com.meazza.cleannotes.ui.auth.AuthViewModel" />
+    </data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/sign_up"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_auth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/switch_auth"
-        app:layout_constraintTop_toTopOf="@+id/switch_auth" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.AuthFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/et_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_auth" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/et_email"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sign_up"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_sign_in"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/et_confirm_password"
-        app:layout_constraintEnd_toEndOf="@+id/et_email"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/et_email"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/sign_in"
+            app:layout_constraintBottom_toBottomOf="@+id/switch_auth"
+            app:layout_constraintEnd_toStartOf="@+id/switch_auth"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/switch_auth" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_confirm_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btn_auth"
-        app:layout_constraintEnd_toEndOf="@+id/et_password"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/sign_up"
+            app:layout_constraintBottom_toBottomOf="@+id/switch_auth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/switch_auth"
+            app:layout_constraintTop_toTopOf="@+id/switch_auth" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_auth"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/et_confirm_password"
-        app:layout_constraintStart_toStartOf="@+id/et_confirm_password" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:text="@={viewModel.email}"
+            app:layout_constraintBottom_toTopOf="@+id/et_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch_auth" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:text="@={viewModel.password}"
+            app:layout_constraintBottom_toTopOf="@+id/et_confirm_password"
+            app:layout_constraintEnd_toEndOf="@+id/et_email"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/et_email"
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_confirm_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:text="@={viewModel.confirmPassword}"
+            app:layout_constraintBottom_toTopOf="@+id/btn_auth"
+            app:layout_constraintEnd_toEndOf="@+id/et_password"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/et_password"
+            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_auth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{() -> viewModel.gotoNotes()}"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/et_confirm_password"
+            app:layout_constraintStart_toStartOf="@+id/et_confirm_password" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

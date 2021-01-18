@@ -5,6 +5,7 @@ import com.meazza.cleannotes.data.db.dao.DeletedNoteIdDao
 import com.meazza.cleannotes.data.db.dao.NoteDao
 import com.meazza.cleannotes.data.db.entity.DeletedNoteIdEntity
 import com.meazza.cleannotes.data.db.entity.NoteEntity
+import com.meazza.cleannotes.util.toNoteList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -15,7 +16,7 @@ class LocalNotesDataSourceImpl @Inject constructor(
 ) : LocalNotesDataSource {
 
     override fun getAllNotes(): Flow<List<Note>> {
-        return noteDao.getAllNotes().map { it.map { note -> note.toNote() } }
+        return noteDao.getAllNotes().map { it.toNoteList() }
     }
 
     override suspend fun insertNote(note: Note) {
