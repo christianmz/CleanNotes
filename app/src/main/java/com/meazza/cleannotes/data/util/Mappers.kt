@@ -1,4 +1,4 @@
-package com.meazza.cleannotes.util
+package com.meazza.cleannotes.data.util
 
 import com.meazza.cleannotes.data.db.entity.NoteEntity
 import com.meazza.cleannotes.data.network.dto.NoteDto

@@ -1,18 +1,21 @@
 package com.meazza.cleannotes.data.repository.notes
 
+import android.content.Context
 import com.meazza.cleannotes.business.domain.Note
 import com.meazza.cleannotes.business.repository.NotesRepository
 import com.meazza.cleannotes.business.vo.Resource
-import com.meazza.cleannotes.data.repository.networkBoundResource
 import com.meazza.cleannotes.data.repository.notes.datasource.LocalNotesDataSource
 import com.meazza.cleannotes.data.repository.notes.datasource.RemoteNotesDataSource
-import com.meazza.cleannotes.vo.SessionManager
+import com.meazza.cleannotes.data.util.networkBoundResource
+import com.meazza.cleannotes.util.checkForInternetConnection
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class NotesRepositoryImpl(
+class NotesRepositoryImpl @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val localNotesDataSource: LocalNotesDataSource,
-    private val remoteNotesDataSource: RemoteNotesDataSource,
-    private val sessionManager: SessionManager
+    private val remoteNotesDataSource: RemoteNotesDataSource
 ) : NotesRepository {
 
     override suspend fun saveNote(note: Note) {
@@ -44,7 +47,7 @@ class NotesRepositoryImpl(
                 }
             },
             shouldFetch = {
-                sessionManager.checkForInternetConnection()
+                checkForInternetConnection(context)
             }
         )
     }

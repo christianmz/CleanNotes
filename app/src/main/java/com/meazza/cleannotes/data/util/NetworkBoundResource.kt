@@ -1,4 +1,4 @@
-package com.meazza.cleannotes.data.repository
+package com.meazza.cleannotes.data.util
 
 import com.meazza.cleannotes.business.vo.Resource
 import kotlinx.coroutines.flow.*

@@ -4,7 +4,7 @@ import com.meazza.cleannotes.business.domain.Note
 import com.meazza.cleannotes.data.network.dto.NoteDto
 import com.meazza.cleannotes.data.network.request.DeleteNoteRequest
 import com.meazza.cleannotes.data.network.service.KtorNotesService
-import com.meazza.cleannotes.util.toListNote
+import com.meazza.cleannotes.data.util.toListNote
 import javax.inject.Inject
 
 class RemoteNotesDataSourceImpl @Inject constructor(

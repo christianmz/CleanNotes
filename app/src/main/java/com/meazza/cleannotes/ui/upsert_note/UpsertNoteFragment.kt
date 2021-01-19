@@ -1,10 +1,7 @@
 package com.meazza.cleannotes.ui.upsert_note
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.meazza.cleannotes.R
@@ -18,6 +15,13 @@ class UpsertNoteFragment : Fragment(R.layout.fragment_upsert_note) {
 
     private var _binding: FragmentUpsertNoteBinding? = null
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -25,8 +29,6 @@ class UpsertNoteFragment : Fragment(R.layout.fragment_upsert_note) {
             lifecycleOwner = this@UpsertNoteFragment
             viewModel = upsertViewModel
         }
-
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -2,11 +2,7 @@ package com.meazza.cleannotes.util
 
 object Constants {
 
-    val IGNORE_AUTH_URLS = listOf("/login", "/register")
-
-    const val DATABASE_NAME = "notes_db"
-    const val TABLE_NAME_NOTES = "notes"
-    const val TABLE_NAME_DELETED_NOTES = "deleted_notes_id"
-
-    const val BASE_URL = "http://10.0.2.2:8080"
+    const val ENCRYPTED_SHARED_PREF_NAME = "enc_shared_prefs"
+    const val KEY_LOGGED_IN_EMAIL = "KEY_LOGGED_EMAIL"
+    const val NO_EMAIL = "NO_EMAIL"
 }

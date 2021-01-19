@@ -1,12 +1,10 @@
 package com.meazza.cleannotes.ui.notes
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.meazza.cleannotes.R
 import com.meazza.cleannotes.databinding.FragmentNotesBinding
@@ -21,6 +19,13 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,7 +38,6 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
             findNavController().navigate(R.id.action_upsert_note)
         }
 
-        setHasOptionsMenu(true)
         hideKeyboard(requireActivity())
     }
 
@@ -44,7 +48,10 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.nav_settings) {
-            findNavController().navigate(R.id.action_settings)
+            findNavController().navigate(
+                R.id.action_global_welcome, null,
+                NavOptions.Builder().setPopUpTo(R.id.nav_graph, true).build()
+            )
         }
         return super.onOptionsItemSelected(item)
     }

@@ -15,20 +15,23 @@ import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 object BindingAdapters {
 
     @JvmStatic
-    @BindingAdapter("android:isEmptyList")
-    fun isEmptyList(view: View, isEmptyList: Boolean) {
-        when (isEmptyList) {
+    @BindingAdapter("android:setVisibility")
+    fun setVisibility(view: View, isVisible: Boolean) {
+        when (isVisible) {
             true -> view.visibility = View.VISIBLE
-            false -> view.visibility = View.INVISIBLE
+            false -> view.visibility = View.GONE
         }
     }
 
     @JvmStatic
     @BindingAdapter("android:setCustomAdapter")
     fun setCustomAdapter(recyclerView: RecyclerView, noteAdapter: NoteAdapter) {
-        recyclerView.adapter = noteAdapter
-        recyclerView.itemAnimator = SlideInUpAnimator().apply {
-            addDuration = 300
+        recyclerView.run {
+            setHasFixedSize(true)
+            adapter = noteAdapter
+            itemAnimator = SlideInUpAnimator().apply {
+                addDuration = 300
+            }
         }
     }
 

@@ -3,7 +3,7 @@ package com.meazza.cleannotes.data.db.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.meazza.cleannotes.business.domain.Note
-import com.meazza.cleannotes.util.Constants.TABLE_NAME_NOTES
+import com.meazza.cleannotes.data.util.Constants.TABLE_NAME_NOTES
 import java.util.*
 
 @Entity(tableName = TABLE_NAME_NOTES)

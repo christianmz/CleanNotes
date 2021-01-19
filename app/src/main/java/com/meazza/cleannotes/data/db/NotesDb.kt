@@ -8,7 +8,11 @@ import com.meazza.cleannotes.data.db.dao.NoteDao
 import com.meazza.cleannotes.data.db.entity.DeletedNoteIdEntity
 import com.meazza.cleannotes.data.db.entity.NoteEntity
 
-@Database(entities = [NoteEntity::class, DeletedNoteIdEntity::class], version = 1)
+@Database(
+    entities = [NoteEntity::class, DeletedNoteIdEntity::class],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(Converters::class)
 abstract class NotesDb : RoomDatabase() {
     abstract fun noteDao(): NoteDao

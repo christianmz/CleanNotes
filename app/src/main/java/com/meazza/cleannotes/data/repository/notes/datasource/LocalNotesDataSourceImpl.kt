@@ -5,7 +5,7 @@ import com.meazza.cleannotes.data.db.dao.DeletedNoteIdDao
 import com.meazza.cleannotes.data.db.dao.NoteDao
 import com.meazza.cleannotes.data.db.entity.DeletedNoteIdEntity
 import com.meazza.cleannotes.data.db.entity.NoteEntity
-import com.meazza.cleannotes.util.toNoteList
+import com.meazza.cleannotes.data.util.toNoteList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

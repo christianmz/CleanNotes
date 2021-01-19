@@ -7,7 +7,5 @@ import com.meazza.cleannotes.ui.notes.adapter.NoteAdapter
 class NotesViewModel : ViewModel() {
 
     val isEmptyList = MutableLiveData<Boolean>()
-
     val adapter = NoteAdapter
-
 }
