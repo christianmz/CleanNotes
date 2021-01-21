@@ -15,15 +15,26 @@
         android:layout_height="match_parent"
         tools:context=".ui.auth.AuthFragment">
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_display_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_auth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/et_email"
+            android:layout_marginTop="64dp"
             app:layout_constraintEnd_toStartOf="@+id/tv_sign_up"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tv_sign_in"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_display_app_name"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -62,7 +73,6 @@
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:text="@={viewModel.userEmail}"
-            app:layout_constraintBottom_toTopOf="@+id/et_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch_auth" />
@@ -76,9 +86,7 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:text="@={viewModel.userPassword}"
-            app:layout_constraintBottom_toTopOf="@+id/et_confirm_password"
             app:layout_constraintEnd_toEndOf="@+id/et_email"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/et_email"
             app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
@@ -90,10 +98,9 @@
             android:ems="10"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
+            android:setVisibility="@{viewModel.isChecked}"
             android:text="@={viewModel.userConfirmPassword}"
-            app:layout_constraintBottom_toTopOf="@+id/btn_auth"
             app:layout_constraintEnd_toEndOf="@+id/et_password"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/et_password"
             app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
@@ -104,22 +111,24 @@
             android:layout_height="wrap_content"
             android:setVisibility="@{viewModel.isVisibleProgressBar}"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/btn_auth"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_confirm_password"
+            app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_auth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:onClick="@{() -> viewModel.signIn()}"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> viewModel.gotoNotes()}"
             android:text="@string/next"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/et_confirm_password"
-            app:layout_constraintStart_toStartOf="@+id/et_confirm_password" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

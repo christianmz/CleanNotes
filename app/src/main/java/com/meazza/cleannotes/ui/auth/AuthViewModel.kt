@@ -25,9 +25,10 @@ class AuthViewModel @ViewModelInject constructor(
     val userPassword = MutableLiveData<String>()
     val userConfirmPassword = MutableLiveData<String>()
     val isVisibleProgressBar = MutableLiveData<Boolean>()
+    val isChecked = MutableLiveData<Boolean>()
 
     fun gotoNotes() {
-
+        if (isChecked.value == true) signIn() else signUp()
     }
 
     private fun signUp() {
@@ -64,7 +65,7 @@ class AuthViewModel @ViewModelInject constructor(
         }
     }
 
-    fun signIn() {
+    private fun signIn() {
 
         val email = userEmail.value
         val password = userPassword.value

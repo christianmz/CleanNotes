@@ -17,6 +17,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     private val authViewModel by viewModels<AuthViewModel>()
 
     private var _binding: FragmentAuthBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,6 +29,13 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
         signUpHandler()
         signInHandler()
+        setAuthSwitch()
+    }
+
+    private fun setAuthSwitch() {
+        binding.switchAuth.setOnCheckedChangeListener { _, isChecked ->
+            authViewModel.isChecked.value = isChecked
+        }
     }
 
     private fun signUpHandler() {
