@@ -1,6 +1,5 @@
 package com.meazza.cleannotes.di
 
-import android.content.Context
 import com.meazza.cleannotes.business.repository.AuthRepository
 import com.meazza.cleannotes.business.repository.NotesRepository
 import com.meazza.cleannotes.data.db.dao.DeletedNoteIdDao
@@ -12,15 +11,14 @@ import com.meazza.cleannotes.data.repository.auth.AuthRepositoryImpl
 import com.meazza.cleannotes.data.repository.auth.datasource.AuthService
 import com.meazza.cleannotes.data.repository.auth.datasource.AuthServiceImpl
 import com.meazza.cleannotes.data.repository.notes.NotesRepositoryImpl
-import com.meazza.cleannotes.data.repository.notes.datasource.LocalNotesDataSource
-import com.meazza.cleannotes.data.repository.notes.datasource.LocalNotesDataSourceImpl
-import com.meazza.cleannotes.data.repository.notes.datasource.RemoteNotesDataSource
-import com.meazza.cleannotes.data.repository.notes.datasource.RemoteNotesDataSourceImpl
+import com.meazza.cleannotes.data.repository.notes.datasource.local.LocalNotesDataSource
+import com.meazza.cleannotes.data.repository.notes.datasource.local.LocalNotesDataSourceImpl
+import com.meazza.cleannotes.data.repository.notes.datasource.remote.RemoteNotesDataSource
+import com.meazza.cleannotes.data.repository.notes.datasource.remote.RemoteNotesDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 
 @Module
@@ -64,10 +62,9 @@ object RepositoryModule {
     @ActivityRetainedScoped
     @Provides
     fun providesNotesRepository(
-        @ApplicationContext context: Context,
         localDataSource: LocalNotesDataSource,
         remoteDataSource: RemoteNotesDataSource
     ): NotesRepository {
-        return NotesRepositoryImpl(context, localDataSource, remoteDataSource)
+        return NotesRepositoryImpl(localDataSource, remoteDataSource)
     }
 }

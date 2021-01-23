@@ -33,7 +33,7 @@ fun hideKeyboard(activity: Activity) {
 }
 
 @Suppress("DEPRECATION")
-fun checkForInternetConnection(context: Context): Boolean {
+fun isThereAnInternetConnection(context: Context): Boolean {
 
     val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

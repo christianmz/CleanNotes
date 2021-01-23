@@ -1,6 +1,7 @@
 package com.meazza.cleannotes.binding
 
 import android.view.View
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
@@ -10,6 +11,7 @@ import com.meazza.cleannotes.business.domain.Note
 import com.meazza.cleannotes.parcelize.NoteParcelize
 import com.meazza.cleannotes.ui.notes.NotesFragmentDirections
 import com.meazza.cleannotes.ui.notes.adapter.NoteAdapter
+import io.noties.markwon.Markwon
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 object BindingAdapters {
@@ -55,5 +57,13 @@ object BindingAdapters {
             val action = NotesFragmentDirections.actionUpsertNote(NoteParcelize.fromNote(note))
             card.findNavController().navigate(action)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:setMarkDownText")
+    fun setMarkdownText(textView: TextView, text: String) {
+        val markwon = Markwon.create(textView.context)
+        val markdown = markwon.toMarkdown(text)
+        markwon.setParsedMarkdown(textView, markdown)
     }
 }

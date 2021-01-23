@@ -1,4 +1,4 @@
-package com.meazza.cleannotes.data.repository.notes.datasource
+package com.meazza.cleannotes.data.repository.notes.datasource.local
 
 import com.meazza.cleannotes.business.domain.Note
 import com.meazza.cleannotes.data.db.dao.DeletedNoteIdDao
@@ -27,8 +27,20 @@ class LocalNotesDataSourceImpl @Inject constructor(
         noteDao.deleteNoteById(id)
     }
 
+    override suspend fun deleteAllNote() {
+        noteDao.deleteAllNotes()
+    }
+
     override suspend fun saveDeletedNote(id: String) {
         deletedNoteIdDao.insertDeletedNoteId(DeletedNoteIdEntity(id))
+    }
+
+    override suspend fun getAllUnsyncedNotes(): List<Note> {
+        return noteDao.getAllUnsyncedNotes().toNoteList()
+    }
+
+    override suspend fun getAllDeletedNotes(): List<DeletedNoteIdEntity> {
+        return deletedNoteIdDao.getAllDeletedNoteIds()
     }
 
     override suspend fun deleteDeletedNote(id: String) {

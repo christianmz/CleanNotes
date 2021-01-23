@@ -5,13 +5,18 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.meazza.cleannotes.R
+import com.meazza.cleannotes.business.vo.Status
 import com.meazza.cleannotes.databinding.FragmentNotesBinding
 import com.meazza.cleannotes.util.Constants.KEY_LOGGED_IN_EMAIL
 import com.meazza.cleannotes.util.hideKeyboard
+import com.meazza.cleannotes.util.isThereAnInternetConnection
+import com.meazza.cleannotes.util.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -52,7 +57,55 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
             findNavController().navigate(R.id.action_upsert_note)
         }
 
+        binding.swlNotes.setOnRefreshListener {
+            notesViewModel.syncAllNotes()
+        }
+
+        getNotes()
         hideKeyboard(requireActivity())
+    }
+
+    private fun getNotes() {
+        notesViewModel.run {
+            getAllNotes(isThereAnInternetConnection(requireContext())).observe(viewLifecycleOwner, {
+                lifecycleScope.launchWhenStarted {
+                    it.collect { result ->
+                        when (result.status) {
+                            Status.SUCCESS -> {
+                                adapter.notes = result.data
+                                binding.swlNotes.isRefreshing = false
+                            }
+                            Status.ERROR -> {
+                                result.run {
+                                    message?.let { message ->
+                                        toast(message)
+                                    }
+
+                                    data?.let { notes ->
+                                        adapter.notes = notes
+                                    }
+                                }
+                                binding.swlNotes.isRefreshing = false
+                            }
+                            Status.LOADING -> {
+                                result.data?.let { notes ->
+                                    adapter.notes = notes
+                                }
+                                binding.swlNotes.isRefreshing = true
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
+
+    private fun gotoAuth() {
+        findNavController().navigate(
+            R.id.action_global_welcome,
+            null,
+            NavOptions.Builder().setPopUpTo(R.id.nav_graph, true).build()
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -71,14 +124,6 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun gotoAuth() {
-        findNavController().navigate(
-            R.id.action_global_welcome,
-            null,
-            NavOptions.Builder().setPopUpTo(R.id.nav_graph, true).build()
-        )
     }
 
     override fun onDestroyView() {

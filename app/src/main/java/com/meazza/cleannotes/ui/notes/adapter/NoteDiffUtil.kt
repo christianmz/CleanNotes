@@ -5,8 +5,9 @@ import com.meazza.cleannotes.business.domain.Note
 
 object NoteDiffUtil : DiffUtil.ItemCallback<Note>() {
 
-    override fun areItemsTheSame(oldItem: Note, newItem: Note) = oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: Note, newItem: Note) =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Note, newItem: Note) = oldItem == newItem
+    override fun areContentsTheSame(oldItem: Note, newItem: Note) =
+        oldItem.hashCode() == newItem.hashCode()
 }
-

@@ -29,7 +29,7 @@
             android:ems="10"
             android:hint="@string/title"
             android:inputType="textPersonName"
-            android:text="@{args.note.title ?? viewModel.title}"
+            android:text="@{args.note.title ?? viewModel.noteTitle}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             android:gravity="start|top"
             android:hint="@string/content"
             android:inputType="textMultiLine"
-            android:text="@{args.note.content ?? viewModel.content}"
+            android:text="@{args.note.content ?? viewModel.noteContent}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/et_title"
             app:layout_constraintStart_toStartOf="@+id/et_title"

@@ -15,24 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.notes.NotesFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_notes"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            android:paddingTop="8dp"
-            android:setCustomAdapter="@{viewModel.adapter}"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:spanCount="2"
-            tools:listitem="@layout/layout_note" />
-
         <ImageView
             android:id="@+id/iv_no_notes"
             android:layout_width="wrap_content"
@@ -40,6 +22,7 @@
             android:contentDescription="@string/no_notes"
             android:setVisibility="@{viewModel.isEmptyList()}"
             android:src="@drawable/ic_empty"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/tv_no_notes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -65,6 +48,29 @@
             app:layout_constraintStart_toStartOf="@+id/iv_no_notes"
             app:layout_constraintTop_toBottomOf="@+id/iv_no_notes"
             tools:visibility="invisible" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swl_notes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_notes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:setCustomAdapter="@{viewModel.adapter}"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/layout_note" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_note"

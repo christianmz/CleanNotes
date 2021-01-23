@@ -1,6 +1,5 @@
 package com.meazza.cleannotes.data.db.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
@@ -20,11 +19,8 @@ interface NoteDao {
     @Query("DELETE FROM notes WHERE isSynced = 1")
     suspend fun deleteAllSyncedNotes()
 
-    @Query("SELECT * FROM notes WHERE id = :noteId")
-    fun observeNoteById(noteId: String): LiveData<NoteEntity>
-
-    @Query("SELECT * FROM notes WHERE id = :noteId")
-    suspend fun getNoteById(noteId: String): NoteEntity?
+    @Query("DELETE FROM notes")
+    suspend fun deleteAllNotes()
 
     @Query("SELECT * FROM notes ORDER BY date DESC")
     fun getAllNotes(): Flow<List<NoteEntity>>

@@ -9,7 +9,7 @@ data class NoteParcelize(
     val title: String,
     val content: String,
     val date: Long,
-    val owners: List<String>,
+    val owners: List<String?>,
     var isSynced: Boolean,
     val id: String
 ) : Parcelable {

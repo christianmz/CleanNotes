@@ -7,7 +7,7 @@ data class NoteDto(
     val title: String,
     val content: String,
     val date: Long,
-    val owners: List<String>,
+    val owners: List<String?>,
     @Expose(deserialize = false, serialize = false)
     val isSynced: Boolean = false,
     val id: String

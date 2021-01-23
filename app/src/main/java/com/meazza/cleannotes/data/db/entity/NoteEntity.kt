@@ -11,7 +11,7 @@ data class NoteEntity(
     val title: String,
     val content: String,
     val date: Long,
-    val owners: List<String>,
+    val owners: List<String?>,
     var isSynced: Boolean = false,
     @PrimaryKey(autoGenerate = false)
     val id: String = UUID.randomUUID().toString()
