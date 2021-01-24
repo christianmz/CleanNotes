@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class UpsertNoteFragment : Fragment(R.layout.fragment_upsert_note) {
 
     private val upsertViewModel by viewModels<UpsertNoteViewModel>()
-    private val args by navArgs<UpsertNoteFragmentArgs>()
+    private val args: UpsertNoteFragmentArgs? by navArgs()
 
     private var _binding: FragmentUpsertNoteBinding? = null
 
@@ -22,7 +22,7 @@ class UpsertNoteFragment : Fragment(R.layout.fragment_upsert_note) {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        upsertViewModel.noteArgs.value = args.Note?.toNote()
+        args?.let { upsertViewModel.noteArgs.value = it.Note?.toNote() }
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

@@ -20,14 +20,12 @@ object NetworkModule {
     @ActivityRetainedScoped
     @Provides
     fun providesAuthInterceptor(): AuthInterceptor {
-        return AuthInterceptor
+        return AuthInterceptor()
     }
 
     @ActivityRetainedScoped
     @Provides
-    fun providesRetrofitInstance(
-        interceptor: AuthInterceptor
-    ): Retrofit.Builder {
+    fun providesRetrofitInstance(interceptor: AuthInterceptor): Retrofit.Builder {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)

@@ -1,7 +1,6 @@
 package com.meazza.cleannotes.data.repository.auth.datasource
 
 import com.meazza.cleannotes.business.vo.Resource
-import com.meazza.cleannotes.data.network.interceptor.AuthInterceptor
 import com.meazza.cleannotes.data.network.request.AccountRequest
 import com.meazza.cleannotes.data.network.service.KtorNotesAuthService
 import kotlinx.coroutines.Dispatchers.IO
@@ -9,8 +8,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthServiceImpl @Inject constructor(
-    private val authService: KtorNotesAuthService,
-    private val authInterceptor: AuthInterceptor
+    private val authService: KtorNotesAuthService
 ) : AuthService {
 
     override suspend fun register(email: String, password: String) = withContext(IO) {
@@ -19,8 +17,6 @@ class AuthServiceImpl @Inject constructor(
             val response = authService.register(AccountRequest(email, password))
 
             if (response.isSuccessful && response.body()!!.isSuccessful) {
-                authInterceptor.email = email
-                authInterceptor.password = password
                 Resource.success(response.body()?.message)
             } else {
                 Resource.error(response.body()?.message ?: response.message(), null)

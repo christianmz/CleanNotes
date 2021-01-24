@@ -9,6 +9,7 @@ import com.meazza.cleannotes.data.network.service.KtorNotesService
 import com.meazza.cleannotes.data.util.toListNote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 class RemoteNotesDataSourceImpl @Inject constructor(
@@ -16,11 +17,16 @@ class RemoteNotesDataSourceImpl @Inject constructor(
 ) : RemoteNotesDataSource {
 
     override suspend fun getAllNotes(): List<Note>? {
+        val code = service.getNotes()
+        Timber.d("${code.code()}")
         return service.getNotes().body()?.toListNote()
     }
 
     override suspend fun addNote(note: Note): Boolean {
-        return service.addNote(NoteDto.fromNote(note)).isSuccessful
+        val code = service.addNote(NoteDto.fromNote(note))
+        val r = service.addNote(NoteDto.fromNote(note)).isSuccessful
+        Timber.d("${code.code()}")
+        return r
     }
 
     override suspend fun deleteNote(id: String): Boolean {

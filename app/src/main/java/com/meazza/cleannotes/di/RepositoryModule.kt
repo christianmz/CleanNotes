@@ -4,7 +4,6 @@ import com.meazza.cleannotes.business.repository.AuthRepository
 import com.meazza.cleannotes.business.repository.NotesRepository
 import com.meazza.cleannotes.data.db.dao.DeletedNoteIdDao
 import com.meazza.cleannotes.data.db.dao.NoteDao
-import com.meazza.cleannotes.data.network.interceptor.AuthInterceptor
 import com.meazza.cleannotes.data.network.service.KtorNotesAuthService
 import com.meazza.cleannotes.data.network.service.KtorNotesService
 import com.meazza.cleannotes.data.repository.auth.AuthRepositoryImpl
@@ -27,11 +26,8 @@ object RepositoryModule {
 
     @ActivityRetainedScoped
     @Provides
-    fun providesAuthService(
-        ktorService: KtorNotesAuthService,
-        interceptor: AuthInterceptor
-    ): AuthService {
-        return AuthServiceImpl(ktorService, interceptor)
+    fun providesAuthService(ktorService: KtorNotesAuthService): AuthService {
+        return AuthServiceImpl(ktorService)
     }
 
     @ActivityRetainedScoped
@@ -45,17 +41,13 @@ object RepositoryModule {
 
     @ActivityRetainedScoped
     @Provides
-    fun providesRemoteNotesDataSource(
-        ktorService: KtorNotesService
-    ): RemoteNotesDataSource {
+    fun providesRemoteNotesDataSource(ktorService: KtorNotesService): RemoteNotesDataSource {
         return RemoteNotesDataSourceImpl(ktorService)
     }
 
     @ActivityRetainedScoped
     @Provides
-    fun providesAuthRepository(
-        authService: AuthService,
-    ): AuthRepository {
+    fun providesAuthRepository(authService: AuthService): AuthRepository {
         return AuthRepositoryImpl(authService)
     }
 

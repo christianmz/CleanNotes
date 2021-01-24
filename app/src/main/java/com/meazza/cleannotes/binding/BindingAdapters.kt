@@ -1,6 +1,7 @@
 package com.meazza.cleannotes.binding
 
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
@@ -22,6 +23,14 @@ object BindingAdapters {
         when (isVisible) {
             true -> view.visibility = View.VISIBLE
             false -> view.visibility = View.GONE
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:setNullableText")
+    fun setNullableText(editText: EditText, nullableText: String?) {
+        nullableText?.let {
+            editText.setText(it)
         }
     }
 

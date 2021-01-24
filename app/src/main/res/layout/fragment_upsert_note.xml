@@ -15,6 +15,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_upsert_note"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.upsert_note.UpsertNoteFragment">
@@ -29,7 +30,8 @@
             android:ems="10"
             android:hint="@string/title"
             android:inputType="textPersonName"
-            android:text="@{args.note.title ?? viewModel.noteTitle}"
+            android:setNullableText="@{args.note.title}"
+            android:text="@={viewModel.noteTitle}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +46,8 @@
             android:gravity="start|top"
             android:hint="@string/content"
             android:inputType="textMultiLine"
-            android:text="@{args.note.content ?? viewModel.noteContent}"
+            android:setNullableText="@{args.note.content}"
+            android:text="@={viewModel.noteContent}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/et_title"
             app:layout_constraintStart_toStartOf="@+id/et_title"

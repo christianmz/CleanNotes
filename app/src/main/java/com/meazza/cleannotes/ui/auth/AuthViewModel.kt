@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.meazza.cleannotes.business.repository.AuthRepository
 import com.meazza.cleannotes.business.vo.Resource
+import com.meazza.cleannotes.data.network.interceptor.AuthInterceptor
 import com.meazza.cleannotes.util.Constants.KEY_LOGGED_IN_EMAIL
 import com.meazza.cleannotes.util.isValidEmail
 import com.meazza.cleannotes.util.isValidPassword
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel @ViewModelInject constructor(
     private val authRepository: AuthRepository,
-    private val prefs: SharedPreferences
+    private val prefs: SharedPreferences,
+    private val authInterceptor: AuthInterceptor
 ) : ViewModel() {
 
     private val _authResult = MutableLiveData<Resource<String>>()
@@ -57,6 +59,8 @@ class AuthViewModel @ViewModelInject constructor(
                         val result = authRepository.login(email, password)
                         _authResult.postValue(result)
                         prefs.edit().putString(KEY_LOGGED_IN_EMAIL, email).apply()
+                        authInterceptor.email = email
+                        authInterceptor.password = password
                     }
                 }
             } else {
